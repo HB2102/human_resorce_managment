@@ -15,6 +15,11 @@ class EmployeeModel(BaseModel):
     # position = Column(String(70))
 
 
+class UpdateEmployeeModel(BaseModel):
+    first_name: Optional[str]
+    last_name: Optional[str]
+
+
 class EmployeeDisplay(BaseModel):
     id: int
     first_name: str
@@ -47,3 +52,7 @@ class UserAuth(BaseModel):
 
     class Config:
         from_attributes = True
+
+class PromoteToAdmin(BaseModel):
+    username: str
+    password: str
