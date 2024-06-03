@@ -1,9 +1,10 @@
 from Backend.database.models import Admin, Employee
+from sqlalchemy import and_, or_
 from sqlalchemy.orm import Session
 from Backend.database.hash import Hash
 from fastapi.exceptions import HTTPException
 from fastapi import status
-from Backend.schemas.schemas import AdminModel, PromoteToAdmin
+from Backend.schemas.schemas import AdminModel, PromoteToAdmin, UpdateEmployeeModel
 
 
 def get_admin_by_username(username: str, db: Session):
@@ -68,7 +69,7 @@ def update_admin_self_info(admin_id: int, request: AdminModel, db: Session):
     admin.first_name = request.first_name
     admin.last_name = request.last_name
 
-    return "Admin Info Updated"
+    return admin
 
 
 def delete_self_admin(admin_id: int, db: Session):
@@ -98,11 +99,10 @@ def promote_to_admin(request: PromoteToAdmin, employee_id: int, db: Session, adm
             detail='Employee not found'
         )
 
-    check = check_username_duplicate(request.username)
+    check = check_username_duplicate(request.username, db)
     if check:
         raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE,
                             detail='This username already exists')
-
 
     admin = Admin(
         first_name=employee.first_name,
@@ -115,4 +115,50 @@ def promote_to_admin(request: PromoteToAdmin, employee_id: int, db: Session, adm
     db.commit()
 
     return admin
+
+
+def search_user_by_name(request: UpdateEmployeeModel, db: Session, admin_id: int):
+    results = []
+
+    best_result = db.query(Employee).filter(and_(Employee.first_name == request.first_name, Employee.last_name == request.last_name)).all()
+
+    for br in best_result:
+        results.append(br)
+
+    other_results = db.query(Employee).filter(or_(Employee.first_name == request.first_name, Employee.last_name == request.last_name)).all()
+
+    for other_r in other_results:
+        results.append(other_r)
+
+    if not results:
+        return "No result found for your search."
+
+    return results
+
+
+def exact_search_user_by_name(request: UpdateEmployeeModel, db: Session, admin_id: int):
+    results = []
+
+    best_result = db.query(Employee).filter(and_(Employee.first_name == request.first_name, Employee.last_name == request.last_name)).all()
+
+    for br in best_result:
+        results.append(br)
+
+    if not results:
+        return "No result found for your search."
+
+    return results
+
+
+def get_all_employees(db: Session):
+    employees = db.query(Employee).all()
+
+    if not employees:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='No Employee Found.'
+        )
+
+    return employees
+
 
