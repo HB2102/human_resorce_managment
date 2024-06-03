@@ -1,3 +1,5 @@
+import datetime
+
 from pydantic import BaseModel
 from fastapi import Query
 from typing import Optional, List
@@ -65,4 +67,14 @@ class TeamDisplay(BaseModel):
     class Config:
         from_attributes = True
 
+
+class HourlyLeaveDisplay(BaseModel):
+    employee_id: int
+    number_of_hours: int
+    date: datetime.datetime
+
+
+class DailyLeaveDisplay(BaseModel):
+    employee_id: int
+    date: datetime.datetime
 
