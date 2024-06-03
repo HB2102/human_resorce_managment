@@ -53,8 +53,7 @@ class ArrivalDeparture(Base,ID):
     __tablename__ = 'arrival_departure'
     employee_id = Column(Integer, ForeignKey('employee.id'))
     date = Column(DateTime)
-    arrival = Column(Boolean, default=False)
-    departure = Column(Boolean, default=False)
+    arrival_or_departure = Column(Boolean)
 
 
 # ADMIN TABLE ===============================================================================================
