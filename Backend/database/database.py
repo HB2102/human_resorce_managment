@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
-engine = create_engine('sqlite:///../my_book_store.db', connect_args={'check_same_thread': False})
+engine = create_engine('sqlite:///Backend/my_book_store.db', connect_args={'check_same_thread': False})
 Base = declarative_base()
 session_local = sessionmaker(bind=engine, autoflush=False)
 

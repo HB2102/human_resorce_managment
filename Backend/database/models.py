@@ -1,9 +1,9 @@
-from database import Base
+from Backend.database.database import Base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Float
 
 
 # ID Class ==================================================================================================
-class ID(Base):
+class ID:
     id = Column(Integer, unique=True, index=True, primary_key=True)
 
 
@@ -12,7 +12,7 @@ class Employee(Base, ID):
     __tablename__ = 'employee'
     first_name = Column(String)
     last_name = Column(String)
-    email = Column(String)
+    # email = Column(String)
     # phone_number = Column(String(20))
     # social_number = Column(String(20))
     # date_hired = Column(DateTime)
@@ -62,8 +62,8 @@ class Admin(Base,ID):
     __tablename__ = 'admin'
     username = Column(String, unique=True)
     password = Column(String)
-    first_name = Column(String)
-    last_name = Column(String)
+    first_name = Column(String, nullable=True)
+    last_name = Column(String, nullable=True)
     # email = Column(String)
     # phone_number = Column(String(20))
     # is_super_admin = Column(Boolean)

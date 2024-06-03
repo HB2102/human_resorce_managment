@@ -50,6 +50,9 @@ def get_current_admin(token: str = Depends(oauth2_scheme), db: Session = Depends
 
     return user
 
+
+
+
 # def get_current_user_admin(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
 #     error_credential = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
 #                                      detail='invalid authorization',

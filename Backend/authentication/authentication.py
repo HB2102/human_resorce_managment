@@ -2,17 +2,17 @@ from fastapi import APIRouter, Depends, status
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from fastapi.exceptions import HTTPException
 from sqlalchemy.orm.session import Session
-from database import models
-from database.database import get_db
-from database.hash import Hash
-from authentication import auth
+from Backend.database import models
+from Backend.database.database import get_db
+from Backend.database.hash import Hash
+from . import auth
 
 router = APIRouter(tags=['Authentication'])
 
 
 @router.post('/token')
 def get_token(request: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.username == request.username).first()
+    user = db.query(models.Admin).filter(models.Admin.username == request.username).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='invalid username')
 
