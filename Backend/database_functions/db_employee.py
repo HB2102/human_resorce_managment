@@ -1,8 +1,9 @@
-from Backend.database.models import Admin, Employee
+from Backend.database.models import Admin, Employee, TeamEmployee, Teams
 from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
 from fastapi import status
 from Backend.schemas.schemas import EmployeeModel, AdminModel, UpdateEmployeeModel
+from .db_team import remove_team_member
 
 
 def add_employee(request: EmployeeModel, db: Session, admin_id: int):
@@ -37,6 +38,12 @@ def delete_employee(employee_id: int, db: Session, admin_id: int):
             status_code=status.HTTP_404_NOT_FOUND,
             detail='Employee not found'
         )
+
+    team_employee = db.query(TeamEmployee).filter(TeamEmployee.employee_id == employee_id).all()
+
+    for item in team_employee:
+        team_id = item.team_id
+        remove_team_member(team_id, employee_id, db)
 
     db.delete(employee)
     db.commit()

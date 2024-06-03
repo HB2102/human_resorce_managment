@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from fastapi import Query
-from typing import Optional
+from typing import Optional, List
 
 
 class EmployeeModel(BaseModel):
@@ -54,3 +54,15 @@ class UserAuth(BaseModel):
 class PromoteToAdmin(BaseModel):
     username: str
     password: str
+
+
+class TeamDisplay(BaseModel):
+    id: int
+    name: str
+    number_of_members: int
+    # members: List[EmployeeDisplay]
+
+    class Config:
+        from_attributes = True
+
+
