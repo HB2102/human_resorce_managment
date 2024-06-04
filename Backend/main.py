@@ -4,13 +4,14 @@ from Backend.database.database import Base
 from Backend.database.database import engine
 from Backend.database import models
 from Backend.authentication import authentication
-from Backend.routers import employee, admin, team, leave
+from Backend.routers import employee, admin, team, leave, arrival_departure
 
 app = FastAPI()
 app.include_router(admin.router)
 app.include_router(team.router)
 app.include_router(leave.router)
 app.include_router(employee.router)
+app.include_router(arrival_departure.router)
 app.include_router(authentication.router)
 
 Base.metadata.create_all(engine)

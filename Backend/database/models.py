@@ -52,7 +52,7 @@ class DailyLeave(Base, ID):
 class ArrivalDeparture(Base,ID):
     __tablename__ = 'arrival_departure'
     employee_id = Column(Integer, ForeignKey('employee.id'))
-    date = Column(DateTime)
+    date = Column(DateTime)   # true mean arrival and false means departure
     arrival_or_departure = Column(Boolean)
 
 

@@ -53,6 +53,7 @@ class UserAuth(BaseModel):
     class Config:
         from_attributes = True
 
+
 class PromoteToAdmin(BaseModel):
     username: str
     password: str
@@ -69,12 +70,30 @@ class TeamDisplay(BaseModel):
 
 
 class HourlyLeaveDisplay(BaseModel):
+    id: int
     employee_id: int
     number_of_hours: int
     date: datetime.datetime
 
+    class Config:
+        from_attributes = True
+
 
 class DailyLeaveDisplay(BaseModel):
+    id: int
     employee_id: int
     date: datetime.datetime
+
+    class Config:
+        from_attributes = True
+
+
+class ArrivalDepartureDisplay(BaseModel):
+    id: int
+    employee_id: int
+    arrival_or_departure: bool  # true mean arrival and false means departure
+    date: datetime.datetime
+
+    class Config:
+        from_attributes = True
 
