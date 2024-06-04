@@ -33,7 +33,7 @@ class TeamEmployee(Base, ID):
     employee_id = Column(Integer, ForeignKey('employee.id'))
 
 
-# HOURY LEAVE TABLE ===============================================================================================
+# HOURLY LEAVE TABLE ===============================================================================================
 class HourlyLeave(Base, ID):
     __tablename__ = 'hourly_leave'
     employee_id = Column(Integer, ForeignKey('employee.id'))
@@ -66,4 +66,11 @@ class Admin(Base,ID):
     # email = Column(String)
     # phone_number = Column(String(20))
     # is_super_admin = Column(Boolean)
+
+
+# PICTURE TABLE =============================================================================================
+class Pictures(Base,ID):
+    __tablename__ = 'picture'
+    employee_id = Column(Integer, ForeignKey('employee.id'))
+    pic_url = Column(String(255))
 

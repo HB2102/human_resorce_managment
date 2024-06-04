@@ -97,3 +97,9 @@ class ArrivalDepartureDisplay(BaseModel):
     class Config:
         from_attributes = True
 
+
+class URLDisplay(BaseModel):
+    pic_url: str
+
+    class Config:
+        from_attributes = True
