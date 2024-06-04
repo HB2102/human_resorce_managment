@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from Backend.database.database import get_db
-from Backend.schemas.schemas import UserAuth, ArrivalDepartureDisplay, EmployeeModel, EmployeeDisplay, DailyLeaveDisplay
+from Backend.schemas.schemas import UserAuth, ArrivalDepartureDisplay
 from Backend.database_functions import db_arrival_departure
 from Backend.authentication.auth import get_current_admin
 from typing import List

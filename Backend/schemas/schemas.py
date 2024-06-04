@@ -1,5 +1,4 @@
 import datetime
-
 from pydantic import BaseModel
 from fastapi import Query
 from typing import Optional, List
@@ -91,7 +90,7 @@ class DailyLeaveDisplay(BaseModel):
 class ArrivalDepartureDisplay(BaseModel):
     id: int
     employee_id: int
-    arrival_or_departure: bool  # true mean arrival and false means departure
+    arrival_or_departure: bool  # true means arrival and false means departure
     date: datetime.datetime
 
     class Config:

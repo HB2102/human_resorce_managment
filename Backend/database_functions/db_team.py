@@ -1,9 +1,8 @@
-from Backend.database.models import Admin, Employee, TeamEmployee, Teams
+from Backend.database.models import Employee, TeamEmployee, Teams
 from sqlalchemy import and_
 from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
 from fastapi import status
-from Backend.schemas.schemas import EmployeeModel, AdminModel, UpdateEmployeeModel, TeamDisplay
 
 
 def check_team_name_duplicate(team_name: str, db: Session):

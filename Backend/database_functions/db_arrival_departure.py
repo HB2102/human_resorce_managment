@@ -1,10 +1,9 @@
 import datetime
-from Backend.database.models import Admin, Employee, ArrivalDeparture, Teams, HourlyLeave, DailyLeave
+from Backend.database.models import Employee, ArrivalDeparture
 from sqlalchemy import and_, desc
 from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
 from fastapi import status
-from Backend.schemas.schemas import EmployeeModel, AdminModel, UpdateEmployeeModel, TeamDisplay
 
 
 def add_arrival_departure(employee_id: int, kind: bool, db: Session):

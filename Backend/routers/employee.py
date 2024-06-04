@@ -1,9 +1,6 @@
-from fastapi import APIRouter, Depends, status
-from fastapi.responses import FileResponse
-from fastapi.exceptions import HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from Backend.database.database import get_db
-from Backend.database.models import Employee
 from Backend.schemas.schemas import EmployeeModel, UserAuth, EmployeeDisplay, UpdateEmployeeModel
 from Backend.authentication.auth import get_current_admin
 from Backend.database_functions import db_employee

@@ -1,9 +1,9 @@
-from Backend.database.models import Admin, Employee, TeamEmployee, Teams
+from Backend.database.models import Employee, TeamEmployee
 from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
 from fastapi import status
-from Backend.schemas.schemas import EmployeeModel, AdminModel, UpdateEmployeeModel
-from .db_team import remove_team_member
+from Backend.schemas.schemas import EmployeeModel, UpdateEmployeeModel
+from db_team import remove_team_member
 
 
 def add_employee(request: EmployeeModel, db: Session, admin_id: int):

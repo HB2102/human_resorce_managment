@@ -82,7 +82,7 @@ def get_pictures_of_employee(employee_id: int, db: Session = Depends(get_db)):
     return pic
 
 
-@router.post('/url_picture_employee')
+@router.post('/url_picture_employee', response_model=URLDisplay)
 def get_pic_employee(employee_id: int, db: Session = Depends(get_db)):
     employee = db.query(Employee).filter(Employee.id == employee_id).first()
     if not employee:
