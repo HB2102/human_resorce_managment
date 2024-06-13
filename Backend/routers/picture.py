@@ -51,7 +51,7 @@ def upload_employee_picture(employee_id: int, file: UploadFile = File(...), db: 
 
 @router.delete('/delete_pic')
 def delete_employee_picture(employee_id: int, db: Session = Depends(get_db), admin: UserAuth = Depends(get_current_admin)):
-    picture = db.query(Pictures).filter(Pictures.employee_id == employee_id).all()
+    picture = db.query(Pictures).filter(Pictures.employee_id == employee_id).first()
     if not picture:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='No picture found !')
 
@@ -82,7 +82,7 @@ def get_pictures_of_employee(employee_id: int, db: Session = Depends(get_db)):
     return pic
 
 
-@router.post('/url_picture_employee', response_model=URLDisplay)
+@router.post('/url_picture_employee')
 def get_pic_employee(employee_id: int, db: Session = Depends(get_db)):
     employee = db.query(Employee).filter(Employee.id == employee_id).first()
     if not employee:

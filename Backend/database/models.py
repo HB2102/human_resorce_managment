@@ -69,7 +69,7 @@ class Admin(Base,ID):
 
 
 # PICTURE TABLE =============================================================================================
-class Pictures(Base,ID):
+class Pictures(Base, ID):
     __tablename__ = 'picture'
     employee_id = Column(Integer, ForeignKey('employee.id'))
     pic_url = Column(String(255))

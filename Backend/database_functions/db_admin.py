@@ -69,6 +69,8 @@ def update_admin_self_info(admin_id: int, request: AdminModel, db: Session):
     admin.first_name = request.first_name
     admin.last_name = request.last_name
 
+    db.commit()
+
     return admin
 
 

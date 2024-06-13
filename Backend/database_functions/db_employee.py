@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from fastapi.exceptions import HTTPException
 from fastapi import status
 from Backend.schemas.schemas import EmployeeModel, UpdateEmployeeModel
-from db_team import remove_team_member
+from .db_team import remove_team_member
 
 
 def add_employee(request: EmployeeModel, db: Session, admin_id: int):
